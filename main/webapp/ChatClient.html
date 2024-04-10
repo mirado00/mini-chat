@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stules_ChatClient.css">
+    <title>miresaka</title>
+</head>
+<body>
+    <header>
+        <h1>Real-Time Chat Application</h1>
+      </header>
+      <div class="container">
+        <div class="chat-window">
+          <div class="chat-area">
+            <div class="chat-messages">
+              <!-- Chat Messages -->
+            </div>
+          </div>
+          <div class="user-input">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+          </div>
+        </div>
+      </div>
+      <script>
+        function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value.trim();
+            if (message !== '') {
+                const chatMessages = document.querySelector('.chat-messages');
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.textContent = message;
+                chatMessages.appendChild(messageElement);
+                messageInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            }
+
+            // Event listener
+            document.getElementById('send-button').addEventListener('click', sendMessage);
+            document.getElementById('message-input').addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+            });
+      </script>
+</body>
+</html>
